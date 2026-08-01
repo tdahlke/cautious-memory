@@ -14,7 +14,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --color-bg: 19, 17, 15;
     --color-fg: 233, 228, 221;
     --color-fg-muted: 158, 148, 138;
@@ -22,6 +22,15 @@
     --color-accent: 224, 133, 76;
     --color-accent-soft: 51, 37, 24;
   }
+}
+
+:root[data-theme='dark'] {
+  --color-bg: 19, 17, 15;
+  --color-fg: 233, 228, 221;
+  --color-fg-muted: 158, 148, 138;
+  --color-border: 47, 42, 37;
+  --color-accent: 224, 133, 76;
+  --color-accent-soft: 51, 37, 24;
 }
 
 *,
@@ -47,6 +56,7 @@ body {
   color: rgb(var(--color-fg));
   background: rgb(var(--color-bg));
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 main {
@@ -139,4 +149,34 @@ ol {
 
 li + li {
   margin-top: 0.3em;
+}
+
+/* Theme toggle icon state: show the icon for the mode a click would switch to. */
+.theme-toggle .icon-sun {
+  display: none;
+}
+.theme-toggle .icon-moon {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .theme-toggle .icon-sun {
+    display: block;
+  }
+  :root:not([data-theme='light']) .theme-toggle .icon-moon {
+    display: none;
+  }
+}
+
+:root[data-theme='dark'] .theme-toggle .icon-sun {
+  display: block;
+}
+:root[data-theme='dark'] .theme-toggle .icon-moon {
+  display: none;
+}
+:root[data-theme='light'] .theme-toggle .icon-sun {
+  display: none;
+}
+:root[data-theme='light'] .theme-toggle .icon-moon {
+  display: block;
 }
