@@ -1,0 +1,26 @@
+---
+const today = new Date();
+---
+
+<footer>
+  <p>&copy; {today.getFullYear()} Travis Dahlke. Built with Astro.</p>
+  <div class="social-links">
+    <a href="https://github.com/tdahlke" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 2em 0;
+    margin-top: 3em;
+    border-top: 1px solid rgb(var(--gray-light));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(var(--gray));
+    font-size: 0.9em;
+  }
+  .social-links a {
+    color: rgb(var(--gray));
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+import { withBase } from '../utils/url';
+
+const home = withBase('');
+---
+
+<header>
+  <nav>
+    <h2><a href={home}>{SITE_TITLE}</a></h2>
+    <div class="links">
+      <HeaderLink href={home}>Home</HeaderLink>
+      <HeaderLink href={withBase('blog')}>Blog</HeaderLink>
+      <HeaderLink href={withBase('about')}>About</HeaderLink>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    margin: 0;
+    padding: 1.5em 0;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+  h2 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  h2 a {
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .links {
+    display: flex;
+    gap: 1.5em;
+  }
+</style>

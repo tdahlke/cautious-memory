@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { withBase } from '../../utils/url';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Blog" description={SITE_DESCRIPTION}>
+  <h1>Blog</h1>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={withBase(`blog/${post.id}/`)}>
+            <h2>{post.data.title}</h2>
+            <FormattedDate date={post.data.pubDate} />
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    padding: 1.5em 0;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+  li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  li h2 {
+    margin: 0 0 0.25em 0;
+  }
+  li time {
+    color: rgb(var(--gray));
+    font-size: 0.9em;
+  }
+  li p {
+    margin: 0.5em 0 0 0;
+    color: rgb(var(--gray-dark));
+  }
+</style>

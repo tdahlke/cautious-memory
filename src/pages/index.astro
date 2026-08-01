@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import { withBase } from '../utils/url';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="intro">
+    <h1>Hi, I'm Travis.</h1>
+    <p>
+      This is my personal blog, where I write about the things I'm building
+      and learning.
+    </p>
+  </section>
+
+  <section>
+    <h2>Recent posts</h2>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={withBase(`blog/${post.id}/`)}>{post.data.title}</a>
+            <FormattedDate date={post.data.pubDate} />
+          </li>
+        ))
+      }
+    </ul>
+    <p><a href={withBase('blog')}>See all posts &rarr;</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0.5em 0;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+  li time {
+    color: rgb(var(--gray));
+    white-space: nowrap;
+  }
+</style>
