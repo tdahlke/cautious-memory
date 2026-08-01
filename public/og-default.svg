@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0f1219"/>
-  <text x="60" y="340" font-family="Georgia, serif" font-size="72" fill="#ffffff">Cautious Memory</text>
-  <text x="60" y="400" font-family="Georgia, serif" font-size="32" fill="#9ca3af">Travis Dahlke's personal blog</text>
+  <rect width="1200" height="630" fill="#13110f"/>
+  <text x="60" y="340" font-family="Georgia, serif" font-size="72" fill="#e9e4dd">Cautious Memory</text>
+  <text x="60" y="400" font-family="Georgia, serif" font-size="32" fill="#e08549">Travis Dahlke's personal blog</text>
 </svg>

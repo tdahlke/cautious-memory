@@ -31,24 +31,59 @@ const posts = (await getCollection('blog'))
         ))
       }
     </ul>
-    <p><a href={withBase('blog')}>See all posts &rarr;</a></p>
+    <p class="more"><a href={withBase('blog')}>See all posts &rarr;</a></p>
   </section>
 </BaseLayout>
 
 <style>
+  .intro h1 {
+    margin-bottom: 0.3em;
+  }
+  .intro p {
+    color: rgb(var(--color-fg-muted));
+  }
+  h2 {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(var(--color-fg-muted));
+    margin-top: 3em;
+    margin-bottom: 1em;
+  }
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
   li {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     gap: 1em;
-    padding: 0.5em 0;
-    border-bottom: 1px solid rgb(var(--gray-light));
+    padding: 0.75em 0;
+    border-bottom: 1px solid rgb(var(--color-border));
   }
-  li time {
-    color: rgb(var(--gray));
-    white-space: nowrap;
+  li a {
+    color: rgb(var(--color-fg));
+    text-decoration: none;
+  }
+  li a:hover {
+    color: rgb(var(--color-accent));
+  }
+  li :global(time) {
+    flex-shrink: 0;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: rgb(var(--color-fg-muted));
+  }
+  .more {
+    margin-top: 1.25em;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+  }
+  .more a {
+    text-decoration: none;
   }
 </style>
